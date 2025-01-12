@@ -18,8 +18,17 @@ function App() {
   const thumbnailCanvasRef = useRef<HTMLCanvasElement>(null);
 
   const colors = [
+    // Primary colors
     '#ff0000', '#00ff00', '#0000ff', '#ffff00',
-    '#ff00ff', '#00ffff', '#ffffff', '#000000'
+    '#ff00ff', '#00ffff', '#ffffff', '#000000',
+    // Pastels
+    '#FFB3BA', '#BAFFC9', '#BAE1FF', '#FFFFBA',
+    // Dark shades
+    '#800000', '#008000', '#000080', '#808000',
+    // Vibrant colors
+    '#FF4500', '#32CD32', '#4169E1', '#FFD700',
+    // Soft colors
+    '#FFA07A', '#98FB98', '#87CEEB', '#DDA0DD'
   ];
 
   useEffect(() => {
@@ -125,29 +134,30 @@ function App() {
       <div className="bg-gray-800 p-8 rounded-3xl shadow-2xl">
         <h1 className="text-3xl font-bold text-white mb-6 text-center">Pixoo 64 Simulator</h1>
         
-        <div className="mb-6 flex gap-4 justify-center">
-          <div className="flex gap-2">
+        <div className="mb-6 flex flex-wrap gap-4 justify-center max-w-[640px]">
+          <div className="flex flex-wrap gap-2 justify-center">
             {colors.map((color) => (
               <button
                 key={color}
-                className={`w-8 h-8 rounded-lg border-2 ${currentColor === color ? 'border-white' : 'border-transparent'}`}
+                className={`w-8 h-8 rounded-lg border-2 ${currentColor === color ? 'border-white' : 'border-transparent'} hover:scale-110 transition-transform`}
                 style={{ backgroundColor: color }}
                 onClick={() => {
                   setCurrentColor(color);
                   setIsEraser(false);
                 }}
+                title={color}
               />
             ))}
           </div>
           <button
-            className={`p-2 rounded-lg ${isEraser ? 'bg-blue-500' : 'bg-gray-700'} text-white`}
+            className={`p-2 rounded-lg ${isEraser ? 'bg-blue-500' : 'bg-gray-700'} text-white hover:scale-110 transition-transform`}
             onClick={() => setIsEraser(!isEraser)}
             title="Eraser"
           >
             <Eraser size={20} />
           </button>
           <button
-            className="p-2 rounded-lg bg-gray-700 text-white hover:bg-red-600 transition-colors"
+            className="p-2 rounded-lg bg-gray-700 text-white hover:bg-red-600 transition-colors hover:scale-110 transition-transform"
             onClick={cleanAll}
             title="Clean All"
           >
